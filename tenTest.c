@@ -41,7 +41,7 @@ int main(int argc, char const* argv[]) {
   // recharge le graphe
   // ================================================================================
   
-  graph_def = read_file("humanDetect.pb");
+  graph_def = read_file("graph.pb");// 
   
   graph = TF_NewGraph();
   status = TF_NewStatus();
@@ -184,7 +184,7 @@ int main(int argc, char const* argv[]) {
 
 
           for (int i=0; i<num_detections; i++) {
-              if (od_result.label_ids[i] == 1.0 && od_result.scores[i] >= 0.6) {
+              if (od_result.label_ids[i] == 1.0 && od_result.scores[i] >= 0.6) { //filtering people at score of 0.6 out of 1
                   printf("persone: %d ", i);
                   printf(", score: %f \n", od_result.scores[i]);
                   int xmin = (int)(od_result.boxes[i*4+1] * img_width);
